@@ -6,16 +6,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        name: '',
+        equations: [
+            {value: ''},
+        ],
+
     },
     mutations: {
-        name(state, name) {
-            state.name = name
+        addEquation(state, eq) {
+            state.equations.push(eq)
+        },
+        removeEquation(state,index){
+            delete state.equations[index]
         },
     },
     getters: {
-        name(state) {
-            return state.name
+        equations(state) {
+            return state.equations
         },
     },
 })
