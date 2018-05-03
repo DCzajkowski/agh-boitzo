@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div class="wrap">
+        <!-- <div class="wrap">
             <h2 class="subtitle">Your equations</h2>
             <div v-for="(item,index) in equations" :key="index">
                 <input class="equation" placeholder="insert an equation" v-model="item.value" @keyup="keepRightAmountOfEquations(item,index)">
@@ -8,30 +8,35 @@
             <div class="canvas-wrap">
                 <canvas id="myCanvas" width="400" height="300"></canvas>
             </div>
+        </div> -->
 
-
-        </div>
+        <plot></plot>
     </div>
 </template>
 
 <script>
+    import Plot from '@/components/Plot'
+
     export default {
         name: 'App',
+        components: {
+            Plot,
+        },
         methods: {
-            keepRightAmountOfEquations: function (input, index) {
+            keepRightAmountOfEquations(input, index) {
                 if (input.value === '') {
-                    this.$store.commit('removeEquation',index)
+                    this.$store.commit('removeEquation', index)
                 }
+
                 if (this.$store.getters.equations.filter(eg => eg.value === '').length === 0) {
-                    this.$store.commit('addEquation',{value: ''})
+                    this.$store.commit('addEquation', { value: '' })
                 }
             },
         },
-        computed:{
-            equations(){
+        computed: {
+            equations() {
                 return this.$store.getters.equations
             },
-
         },
     }
 </script>

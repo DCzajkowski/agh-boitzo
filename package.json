@@ -11,6 +11,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "d3": "^3.5.17",
+    "function-plot": "^1.18.1",
     "lodash": "^4.17.10",
     "vue": "^2.5.2",
     "vuex": "^3.0.1"
