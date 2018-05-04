@@ -11,25 +11,26 @@
         mounted() {
             functionPlot({
                 target: this.$refs.plot,
-                yAxis: {
-                    domain: [-1, 9],
-                },
-                tip: {
-                    renderer() {
-
-                    },
-                },
                 grid: true,
                 data: [
-                    {
-                        fn: 'x^2',
-                        derivative: {
-                            fn: '2 * x',
-                            updateOnMouseMove: true,
-                        },
-                    },
+                    {fn: 'x'},
                 ],
             })
+            this.$store.watch((state) => state.equations, eq => {
+                try {
+                    functionPlot({
+                        target: this.$refs.plot,
+                        grid: true,
+                        data: eq.filter(eg => eg.value !== '').map(ob => ({
+                            fn: ob.value,
+                            fnType: 'implicit',
+
+                        })),
+                    })
+                }
+                catch (er) {
+                }
+            }, {deep: true})
         },
     }
 </script>
