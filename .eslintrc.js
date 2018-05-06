@@ -42,10 +42,6 @@ module.exports = {
         'no-empty': ["error", { "allowEmptyCatch": true }],
         'no-cond-assign': ['error', 'except-parens'],
         'no-compare-neg-zero': 'error',
-
-
-
-        // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'linebreak-style': ['error', 'unix'],
         'quotes': ['error', 'single'],
