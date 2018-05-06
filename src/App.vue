@@ -2,16 +2,18 @@
     <div id="app">
         <div class="wrap">
             <h2 class="subtitle">Your equations</h2>
-            <div v-for="(item,index) in equations" :key="index">
-                <input class="equation" placeholder="insert an equation" v-model="item.value"
-                       @keyup="keepRightAmountOfEquations(item,index)">
+            <div v-for="(item, index) in equations" :key="index">
+                <input
+                    class="equation"
+                    placeholder="Insert an equation"
+                    v-model="item.value"
+                    @keyup="keepRightAmountOfEquations(item, index)"
+                >
             </div>
             <div class="canvas-wrap">
                 <plot class="wrap"></plot>
             </div>
         </div>
-
-
     </div>
 </template>
 
@@ -30,7 +32,7 @@
                 }
 
                 if (this.$store.getters.equations.filter(eg => eg.value === '').length === 0) {
-                    this.$store.commit('addEquation', {value: ''})
+                    this.$store.commit('addEquation', { value: '' })
                 }
             },
         },
@@ -83,6 +85,4 @@
         width: 700px;
         margin-top: 10px;
     }
-
 </style>
-
