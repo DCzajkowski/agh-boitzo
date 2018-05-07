@@ -16,7 +16,6 @@ export default new Vuex.Store({
             state.equations.push(eq)
         },
         removeEquation(state,index){
-            console.log('lol')
             state.equations.splice(index,1)
         },
     },
