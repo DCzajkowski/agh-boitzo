@@ -4,22 +4,22 @@
             <h2 class="subtitle">Your equations</h2>
             <div v-for="(item, index) in equations" :key="index">
                 <input
-                        class="equation"
-                        placeholder="Insert an equation"
-                        v-model="item.value"
-                        @keyup="keepRightAmountOfEquations(item, index)"
+                    class="equation"
+                    placeholder="Insert an equation"
+                    v-model="item.value"
+                    @keyup="keepRightAmountOfEquations(item, index)"
                 >
             </div>
             <div class="type">
                 <input
-                        class="target"
-                        placeholder="Insert target function"
-                        v-model="target"
+                    class="target"
+                    placeholder="Insert target function"
+                    v-model="target"
                 >
                 <input
-                        class="varNumber"
-                        v-model.number="varNumber"
-                        @blur="prepareFields"
+                    class="varNumber"
+                    v-model.number="varNumber"
+                    @blur="prepareFields"
                 >
                 <select class="select" name="typ" v-model="type">
                     <option value="max">max</option>
@@ -28,33 +28,22 @@
             </div>
 
             <div class="variables">
-            <div class="variable" v-for="(item, index) in variables" :key="index">
-                <p class="ba"> {{'x'+(index+1)+': '}}</p>
-                <input class="vab"
-
-                        v-model.number="item.value"
-                >
-            </div>
+                <div class="variable" v-for="(item, index) in variables" :key="index">
+                    <p class="ba"> {{'x'+(index+1)+': '}}</p>
+                    <input class="vab" v-model.number="item.value">
+                </div>
             </div>
             <div class="go" @click="compute">compute</div>
-            <!--<div class="canvas-wrap">-->
-            <!--<plot class="wrap"></plot>-->
-            <!--</div>-->
-
             <div class="result" v-model="result"></div>
         </div>
     </div>
 </template>
 
 <script>
-    //import Plot from '@/components/Plot'
     import MathModule from '@/modules/Math'
 
     export default {
         name: 'App',
-        components: {
-            /*Plot,*/
-        },
         data() {
             return {
                 variables: [],
@@ -68,22 +57,22 @@
                 }
 
                 if (this.$store.getters.equations.filter(eg => eg.value === '').length === 0) {
-                    this.$store.commit('addEquation', {value: ''})
+                    this.$store.commit('addEquation', { value: '' })
                 }
             },
             set2Target(target) {
                 this.$store.commit('addTarget', target)
             },
-
             compute() {
                 const math = new MathModule(this.equations, this.target, this.type, this.varNumber)
+
                 this.result = JSON.stringify(math.compute(this.variables.map(el => el.value)))
-                console.log(this.result)
             },
             prepareFields() {
                 this.variables = []
+
                 for (let i = 0; i < this.varNumber; i++) {
-                    this.variables.push({value: 0})
+                    this.variables.push({ value: 0 })
                 }
             },
         },
@@ -190,18 +179,21 @@
         max-width: 2rem;
         text-align: center;
     }
-    .variables{
+
+    .variables {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
     }
-    .variable{
+
+    .variable {
         border-radius: 2px;
         display: flex;
         flex-direction: row;
         padding: 10px;
     }
-    .vab{
+
+    .vab {
 
         width: 20px;
         text-align: left;
@@ -209,7 +201,8 @@
         border: 1px solid #333;
         border-radius: 2px;
     }
-    .ba{
+
+    .ba {
         font-size: 12px;
     }
 

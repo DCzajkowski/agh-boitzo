@@ -10,23 +10,17 @@ export default class MathModule {
         this.type = type
         this.varNumber = varNumber
         this.iterator = 0
-
     }
 
     compute(startingPoint) {
-
-        console.log('step')
-        this.iterator=this.iterator+1
-
+        this.iterator += 1
         let winningPoint = startingPoint
         let winningValue = null
         this.points = this.getRandomPoints(1000, 1000, winningPoint)
-        for (const point of this.points) {
 
-            //create scope
+        for (const point of this.points) {
             const scope = {}
             for (let j = 1; j <= this.varNumber; j++) {
-                // scope['x' + j] = point[j - 1]
                 Object.defineProperty(scope, 'x' + j, { value: point[j - 1] })
             }
 
@@ -53,29 +47,28 @@ export default class MathModule {
                     }
                 }
             }
-
-
         }
 
-        if (distance(winningPoint, startingPoint) <= 0.01 || this.iterator>100) {
+        if (distance(winningPoint, startingPoint) <= 0.01 || this.iterator > 100) {
             return winningPoint
         }
 
         return this.compute(winningPoint)
-
     }
-
 
     getRandomPoints(pointsAmount, range, startingPoint) {
         const points = []
+
         for (let i = 0; i < pointsAmount; i++) {
             const point = []
+
             for (let j = 0; j < this.varNumber; j++) {
                 point[j] = _.random(-range - Math.abs(startingPoint[j]), range + Math.abs(startingPoint[j]), true)
             }
+
             points.push(point)
         }
+
         return points
     }
-
 }
