@@ -34,6 +34,15 @@
                     <input class="vab" v-model.number="item.value">
                 </div>
             </div>
+
+            <div class="range">
+                range: <input type="number" v-model="range">
+            </div>
+
+            <div class="iters">
+                # of iterations: <input type="number" v-model="interationsAmount">
+            </div>
+
             <div class="go" @click="compute">compute</div>
             <div class="result">{{ result }}</div>
         </div>
@@ -65,7 +74,7 @@
                 this.$store.commit('addTarget', target)
             },
             compute() {
-                const math = new MathModule(this.equations, this.target, this.type, this.varNumber)
+                const math = new MathModule(this.equations, this.target, this.type, this.varNumber, this.range, this.interationsAmount)
 
                 this.result = JSON.stringify(math.compute(this.variables.map(el => el.value)))
             },
@@ -103,6 +112,22 @@
                 },
                 set(value) {
                     this.$store.commit('setVarNumber', value)
+                },
+            },
+            range: {
+                get() {
+                    return this.$store.getters.range
+                },
+                set(value) {
+                    this.$store.commit('setRange', value)
+                },
+            },
+            interationsAmount: {
+                get() {
+                    return this.$store.getters.interationsAmount
+                },
+                set(value) {
+                    this.$store.commit('setInterationsAmount', value)
                 },
             },
         },
@@ -204,5 +229,9 @@
 
     .ba {
         font-size: 12px;
+    }
+
+    .range, .iters {
+        margin-top: 1rem;
     }
 </style>

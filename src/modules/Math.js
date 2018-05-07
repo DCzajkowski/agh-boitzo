@@ -4,19 +4,21 @@ import distance from 'euclidean-distance'
 
 export default class MathModule {
 
-    constructor(eq, target, type, varNumber) {
+    constructor(eq, target, type, varNumber, range, interationsAmount) {
         this.equations = eq
         this.target = target
         this.type = type
         this.varNumber = varNumber
         this.iterator = 0
+        this.range = range
+        this.interationsAmount = interationsAmount
     }
 
     compute(startingPoint) {
         this.iterator += 1
         let winningPoint = startingPoint
         let winningValue = null
-        this.points = this.getRandomPoints(1000, 1000, winningPoint)
+        this.points = this.getRandomPoints(1000, this.range, winningPoint)
 
         for (const point of this.points) {
             const scope = {}
@@ -49,7 +51,7 @@ export default class MathModule {
             }
         }
 
-        if (distance(winningPoint, startingPoint) <= 0.01 || this.iterator > 100) {
+        if (distance(winningPoint, startingPoint) <= 0.01 || this.iterator > this.interationsAmount) {
             return winningPoint
         }
 

@@ -14,7 +14,8 @@ export default new Vuex.Store({
         target: '',
         type: 'max',
         varNumber: 0,
-
+        range: 10,
+        interationsAmount: 100,
     },
     mutations: {
         addEquation(state, eq) {
@@ -32,6 +33,12 @@ export default new Vuex.Store({
         setVarNumber(state, target) {
             state.varNumber = target
         },
+        setRange(state, target) {
+            state.range = target
+        },
+        setInterationsAmount(state, target) {
+            state.interationsAmount = target
+        },
     },
     getters: {
         equations(state) {
@@ -45,6 +52,12 @@ export default new Vuex.Store({
         },
         varNumber(state) {
             return state.varNumber
+        },
+        range(state) {
+            return state.range
+        },
+        interationsAmount(state) {
+            return state.interationsAmount
         },
     },
 })
