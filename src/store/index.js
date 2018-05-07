@@ -7,9 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         equations: [
-            {value: ''},
+            { value: '' },
         ],
-
     },
     mutations: {
         addEquation(state, eq) {
