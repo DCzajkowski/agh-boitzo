@@ -27,14 +27,15 @@
                 </select>
             </div>
 
-            <div class="variables">
+            <div class="variables" v-if="variables.length">
+                <span>Starting point:</span>
                 <div class="variable" v-for="(item, index) in variables" :key="index">
-                    <p class="ba"> {{'x'+(index+1)+': '}}</p>
+                    <p class="ba"> {{ `x${index + 1}: ` }}</p>
                     <input class="vab" v-model.number="item.value">
                 </div>
             </div>
             <div class="go" @click="compute">compute</div>
-            <div class="result" v-model="result"></div>
+            <div class="result">{{ result }}</div>
         </div>
     </div>
 </template>
