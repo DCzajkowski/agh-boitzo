@@ -13,7 +13,7 @@
                 target: this.$refs.plot,
                 grid: true,
                 data: [
-                    {fn: 'x'},
+                    { fn: 'x' },
                 ],
             })
             this.$store.watch((state) => state.equations, eq => {
@@ -24,13 +24,12 @@
                         data: eq.filter(eg => eg.value !== '').map(ob => ({
                             fn: ob.value,
                             fnType: 'implicit',
-
                         })),
                     })
+                } catch (er) {
+                    // do nothing
                 }
-                catch (er) {
-                }
-            }, {deep: true})
+            }, { deep: true })
         },
     }
 </script>

@@ -8,7 +8,6 @@ window.d3 = d3
 import store from './store'
 import App from './App'
 
-/* eslint-disable no-new */
 new Vue({
     el: '#app',
     store,

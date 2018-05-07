@@ -69,17 +69,16 @@
     }
 
     .wrap {
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 80px;
+        margin: 80px auto 0;
     }
 
     .equation {
         outline: 0 !important;
-        border: 0px;
+        border: 0;
         border-bottom: 1px solid #999;
         padding: 6px;
         width: 700px;
