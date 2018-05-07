@@ -105,18 +105,16 @@
     }
 
     .wrap {
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-top: 80px;
-        padding: 10px;
-        max-width: 720px;
+        align-items: center;
+        margin: 80px auto 0;
     }
 
     .equation, .target {
         outline: 0 !important;
-        border: 0px;
+        border: 0;
         border-bottom: 1px solid #999;
         padding: 6px;
         width: 700px;

@@ -42,10 +42,6 @@ module.exports = {
         'no-empty': ["error", { "allowEmptyCatch": true }],
         'no-cond-assign': ['error', 'except-parens'],
         'no-compare-neg-zero': 'error',
-
-
-
-        // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'linebreak-style': ['error', 'unix'],
         'quotes': ['error', 'single'],
@@ -65,6 +61,19 @@ module.exports = {
         'no-console': 'off',
         'no-unused-vars': ['warn'],
         'vue/script-indent': ['error', 4, { 'baseIndent': 1 }],
+        'vue/html-indent': ['error', 4],
+        'vue/attributes-order': 'off',
+        'vue/max-attributes-per-line': 'off',
+        'vue/order-in-components': 'off',
+        'vue/html-self-closing': ['error', {
+            "html": {
+                "void": "never",
+                "normal": "never",
+                "component": "never"
+            },
+            "svg": "never",
+            "math": "never"
+        }],
         'vue/valid-v-model': 'off',
         'no-var': 'error',
         'prefer-const': 'error',
