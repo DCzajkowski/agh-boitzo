@@ -108,8 +108,8 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
         margin: 80px auto 0;
+        max-width: 700px;
     }
 
     .equation, .target {
