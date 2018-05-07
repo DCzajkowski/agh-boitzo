@@ -13,6 +13,8 @@ export default new Vuex.Store({
         ],
         target: '',
         type: 'max',
+        varNumber: 0,
+
     },
     mutations: {
         addEquation(state, eq) {
@@ -27,6 +29,9 @@ export default new Vuex.Store({
         setType(state, target) {
             state.type = target
         },
+        setVarNumber(state, target) {
+            state.varNumber = target
+        },
     },
     getters: {
         equations(state) {
@@ -37,6 +42,9 @@ export default new Vuex.Store({
         },
         type(state) {
             return state.type
+        },
+        varNumber(state) {
+            return state.varNumber
         },
     },
 })

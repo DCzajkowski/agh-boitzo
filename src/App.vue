@@ -15,27 +15,51 @@
                         class="target"
                         placeholder="Insert target function"
                         v-model="target"
-                        @keyup=""
-                ><select class="select" name="typ" v-model="type">
-                <option value="max">max</option>
-                <option value="min">min</option>
-            </select>
+                >
+                <input
+                        class="varNumber"
+                        v-model.number="varNumber"
+                        @blur="prepareFields"
+                >
+                <select class="select" name="typ" v-model="type">
+                    <option value="max">max</option>
+                    <option value="min">min</option>
+                </select>
+            </div>
+
+            <div class="variables">
+            <div class="variable" v-for="(item, index) in variables" :key="index">
+                <p class="ba"> {{'x'+(index+1)+': '}}</p>
+                <input class="vab"
+
+                        v-model.number="item.value"
+                >
+            </div>
             </div>
             <div class="go" @click="compute">compute</div>
             <!--<div class="canvas-wrap">-->
             <!--<plot class="wrap"></plot>-->
             <!--</div>-->
+
+            <div class="result" v-model="result"></div>
         </div>
     </div>
 </template>
 
 <script>
     //import Plot from '@/components/Plot'
+    import MathModule from '@/modules/Math'
 
     export default {
         name: 'App',
         components: {
             /*Plot,*/
+        },
+        data() {
+            return {
+                variables: [],
+                result: '',
+            }
         },
         methods: {
             keepRightAmountOfEquations(input, index) {
@@ -52,7 +76,15 @@
             },
 
             compute() {
-                console.log('lol')
+                const math = new MathModule(this.equations, this.target, this.type, this.varNumber)
+                this.result = JSON.stringify(math.compute(this.variables.map(el => el.value)))
+                console.log(this.result)
+            },
+            prepareFields() {
+                this.variables = []
+                for (let i = 0; i < this.varNumber; i++) {
+                    this.variables.push({value: 0})
+                }
             },
         },
         computed: {
@@ -73,6 +105,14 @@
                 },
                 set(value) {
                     this.$store.commit('setType', value)
+                },
+            },
+            varNumber: {
+                get() {
+                    return this.$store.getters.varNumber
+                },
+                set(value) {
+                    this.$store.commit('setVarNumber', value)
                 },
             },
         },
@@ -134,7 +174,8 @@
     .select {
         height: 1.5rem;
     }
-    .go{
+
+    .go {
         align-self: center;
         padding: 0.5rem;
         letter-spacing: 0.1em;
@@ -142,6 +183,34 @@
         border-radius: 4px;
         color: white;
         margin: 2rem;
+    }
+
+    .varNumber {
+        border-radius: 4px;
+        max-width: 2rem;
+        text-align: center;
+    }
+    .variables{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .variable{
+        border-radius: 2px;
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+    }
+    .vab{
+
+        width: 20px;
+        text-align: left;
+        outline: none;
+        border: 1px solid #333;
+        border-radius: 2px;
+    }
+    .ba{
+        font-size: 12px;
     }
 
 </style>
