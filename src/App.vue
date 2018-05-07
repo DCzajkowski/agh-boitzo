@@ -194,7 +194,6 @@
     }
 
     .vab {
-
         width: 20px;
         text-align: left;
         outline: none;
@@ -205,5 +204,4 @@
     .ba {
         font-size: 12px;
     }
-
 </style>
