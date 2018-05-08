@@ -18,12 +18,13 @@ export default class MathModule {
         this.iterator += 1
         let winningPoint = startingPoint
         let winningValue = null
-        this.points = this.getRandomPoints(1000, this.range, winningPoint)
+        this.points = this.getRandomPoints(5000, this.range / this.iterator, winningPoint)
+        console.log(this.iterator)
 
         for (const point of this.points) {
             const scope = {}
             for (let j = 1; j <= this.varNumber; j++) {
-                Object.defineProperty(scope, 'x' + j, { value: point[j - 1] })
+                Object.defineProperty(scope, 'x' + j, {value: point[j - 1]})
             }
 
             let allok = true
@@ -51,7 +52,7 @@ export default class MathModule {
             }
         }
 
-        if (distance(winningPoint, startingPoint) <= 0.01 || this.iterator > this.interationsAmount) {
+        if (this.iterator > this.interationsAmount) {
             return winningPoint
         }
 
@@ -73,4 +74,5 @@ export default class MathModule {
 
         return points
     }
+
 }
